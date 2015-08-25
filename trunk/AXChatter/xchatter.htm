@@ -1,0 +1,64 @@
+<HTML>
+<HEAD>
+<TITLE>ATL 8.0 test page for object xchatter</TITLE>
+</HEAD>
+<BODY>
+
+
+<OBJECT ID="xchatter" CLASSID="CLSID:FDED6FA5-6596-4412-A414-5E3A552044AB"
+    CODEBASE="http://www.taotaofun.com/Photo/yyyy/axchatter.cab"></OBJECT>
+
+<script LANGUAGE="JavaScript">
+function StartInstantMsgChat(userid,username){
+
+	xchatter.InstantMsgChat(userid,username);
+}
+function onclickStartInstantMsgChat(){
+	var userid = document.getElementById("userid");
+	var username = document.getElementById("username");
+	StartInstantMsgChat(userid.value,username.value);
+}
+function onclickSetMyInfo(){
+	var myid = document.getElementById("myid");
+	var myname = document.getElementById("myname");
+	xchatter.MyId=myid.value;
+	xchatter.MyName=myname.value;
+}
+function onclickStart(){
+	xchatter.Start();
+}
+xchatter.MyId=13;
+xchatter.MyName="du";
+
+</script>
+
+<form>
+<input type="button" value="StartChatter" onclick="onclickStart()"/>
+<br>
+MyId <input type="text" id="myid"/> Myame <input type="text" id="myname"/>
+<input type="button" value="SetMyInfo" onclick="onclickSetMyInfo()"/>
+<br>
+Instant msg chat: Id <input type="text" id="userid"/> name <input type="text" id="username"/>
+<input type="button" value="InstantMsgChat" onclick="onclickStartInstantMsgChat()"/>
+</form>
+
+说明： 因为此控件还没有嵌入数字证书，为了能下载并安装此控件，需要对IE的安全设置有所调整。<br>
+测试步骤：<br>
+1）开启IE(Microsoft Internet Explorer)<br>
+2）IE安全设置： 选择IE  工具->Internet选项->安全->受信任的站点->添加站点<br>
+                http://www.taotaofun.com/photo/xxxx/xchatter1.htm<br>
+                注意不要勾选 "【】对该区域的所有站点要求服务器验证（https:）(S)"<br>
+                然后对 受信任站点 自定义级别<br>
+                将控件下载或者运行相关的选项都开启，特别是未签名控件相关的。<br>
+3）打开网址 http://www.taotaofun.com/photo/xxxx/xchatter1.htm， 将会提示下载和安装未签名的控件AXChatter.cab。同意并安装。<br>
+4）经过以上步骤，应该就可以在页面上显示控件，如果还是不行，请手动下载<br>
+                http://www.taotaofun.com/Photo/yyyy/axchatter.cab<br>
+                并解压，双击其中的 deploy_release.bat 以安装控件，刷新网页即可。<br>
+5）用户需要有自己的ID和名字，可以通过SetMyInfo进行设置，id为Int整数，名字为String型。<br>
+6）StartChatter 启动控件<br>
+7）邀请他人语音（他人需同时也在线），填入他人的ID和名字，然后点击InstantMsgChat，即可文字聊天。<br>
+8）点击控件上部的 语音->超级语音，即可邀请当前好友语音聊天。对方同意后即可语音聊天。<br>
+9）视频模块和远程桌面模块正在开发中...<br>
+
+</BODY>
+</HTML>

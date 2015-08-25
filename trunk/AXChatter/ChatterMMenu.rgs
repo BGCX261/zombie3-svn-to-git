@@ -1,0 +1,34 @@
+HKCR
+{
+	AXChatter.ChatterMMenu.1 = s 'ChatterMMenu Class'
+	{
+		CLSID = s '{F23F1295-D6D4-4C7F-9E28-B2CA23639CC4}'
+	}
+	AXChatter.ChatterMMenu = s 'ChatterMMenu Class'
+	{
+		CLSID = s '{F23F1295-D6D4-4C7F-9E28-B2CA23639CC4}'
+		CurVer = s 'AXChatter.ChatterMMenu.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {F23F1295-D6D4-4C7F-9E28-B2CA23639CC4} = s 'ChatterMMenu Class'
+		{
+			ProgID = s 'AXChatter.ChatterMMenu.1'
+			VersionIndependentProgID = s 'AXChatter.ChatterMMenu'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			val AppID = s '%APPID%'
+			ForceRemove 'Control'
+			ForceRemove 'ToolboxBitmap32' = s '%MODULE%, 109'
+			'MiscStatus' = s '0'
+			{
+			    '1' = s '%OLEMISC%'
+			}
+			'TypeLib' = s '{F0E6928C-ACBA-4913-A2E2-631F2B3F11B1}'
+			'Version' = s '1.0'
+		}
+	}
+}

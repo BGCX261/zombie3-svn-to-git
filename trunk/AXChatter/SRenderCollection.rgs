@@ -1,0 +1,34 @@
+HKCR
+{
+	AXChatter.SRenderCollection.1 = s 'SRenderCollection Class'
+	{
+		CLSID = s '{A17D0285-990D-4C85-8711-E6BD32088F87}'
+	}
+	AXChatter.SRenderCollection = s 'SRenderCollection Class'
+	{
+		CLSID = s '{A17D0285-990D-4C85-8711-E6BD32088F87}'
+		CurVer = s 'AXChatter.SRenderCollection.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {A17D0285-990D-4C85-8711-E6BD32088F87} = s 'SRenderCollection Class'
+		{
+			ProgID = s 'AXChatter.SRenderCollection.1'
+			VersionIndependentProgID = s 'AXChatter.SRenderCollection'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			val AppID = s '%APPID%'
+			ForceRemove 'Control'
+			ForceRemove 'ToolboxBitmap32' = s '%MODULE%, 123'
+			'MiscStatus' = s '0'
+			{
+			    '1' = s '%OLEMISC%'
+			}
+			'TypeLib' = s '{F0E6928C-ACBA-4913-A2E2-631F2B3F11B1}'
+			'Version' = s '1.0'
+		}
+	}
+}

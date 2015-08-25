@@ -1,0 +1,9 @@
+; axchatter.def : Declares the module parameters.
+
+LIBRARY      "axchatter.DLL"
+
+EXPORTS
+	DllCanUnloadNow		PRIVATE
+	DllGetClassObject	PRIVATE
+	DllRegisterServer	PRIVATE
+	DllUnregisterServer	PRIVATE

@@ -1,0 +1,92 @@
+1.CAxDialogImpl::Create(hWnd) may fail when called inside OnIntiDialog.
+  1)solution:call it after OnInitDialog(...). Note:I don't think so later.
+  2)it's because RichEdit control is on the dialog,after RichEdit removed,it succeedd.but I don't know why it is.
+2.manifest 50608 kind of odd.
+  The manifest is of version 8.0.50608.0, but the relevant DLLs, such as atl80,msvcr80... are of version 8.0.50727.42,
+  it works on my own PC, because there are policies in C:/windows/winxsx/policy, which redirect 8.0.50608.0 to 8.0.50727.42.
+  it doesn't work on other pc, for there is no such policy. 
+  solution:make an Application Configuration File at local folder
+		 example.exe.<resource ID>.config to redirect 8.0.50608.0 to 8.0.50727.42
+<configuration>
+       <windows>
+           <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+	      <dependentAssembly>
+		<assemblyIdentity type="win32" name="Microsoft.VC80.ATL" processorArchitecture="x86" publicKeyToken="1fc8b3b9a1e18e3b"></assemblyIdentity>
+		<bindingRedirect oldVersion="8.0.41204.256-8.0.50608.0" newVersion="8.0.50727.42"/>
+	      </dependentAssembly>
+	      <dependentAssembly>
+		<assemblyIdentity type="win32" name="Microsoft.VC80.DebugCRT" processorArchitecture="x86" publicKeyToken="1fc8b3b9a1e18e3b"/></assemblyIdentity>
+		<bindingRedirect oldVersion="8.0.41204.256-8.0.50608.0" newVersion="8.0.50727.42"/>
+	      </dependentAssembly>
+	   </assemblyBinding>
+       </windows>
+</configuration>
+
+3.Note,every windows binary has a manifest, embedded or a manifest file.
+4.regsvr32 但没有找到dllinstall输入点 with command regsvr32 /i yourdll.dll
+  workaround:	regsvr32 yourdll.dll
+5.Note:don't Set it "not using ATL" and "yes" to Minimize CRT use in ATL
+6.How to remove the downloaded xchatter class (activex control)
+  just delete it from C:\WINDOWS\Downloaded Program Files
+	打开Occache 或 Downloaded Program Files 文件夹时，将显示所有 ActiveX 控件
+7.sub thread should not call com method which causes the main thread dialog suspended.
+   should do it by indirectly sendmessage(mainthreadHwnd...)
+8.Resource Editor: Add/Remove operation is impossible 
+My *guess* is that this is related to an IntelliSense bug in Beta2 where renaming or removing files in Beta2 caused stale classes to still remain in the IntelliSense database. The resource editor is trying to use this stale data and is consequently failing. We fixed this post Beta2.
+To confirm that this is the problem, can you close your solution, delete the solution .ncb file, and then reopen the solution again then try the same steps.
+If it works, then my guess is correct and we did fix it. If it does not work, please let us know so we can investigate further (but we will need more information with exact steps).
+Thanks.
+9.The _INameEvent dispinterface is a private interface,so it's 
+library atlprj5Lib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(35E9F58F-DAFD-4EBE-A417-214CB8EA01EA),
+		helpstring("_IChatterDlgEvents Interface")
+	]
+	dispinterface _IChatterDlgEvents
+	{
+		properties:
+		methods:
+	};
+............
+............
+}
+so in the class view 
+it's like this
+altprj5Lib
+	...
+	...
+	_IChatterDlgEvents
+so, the steps to add connection points to your project is:
+1.create your atlprj
+2.create a classs that support connection point
+3.add methods or properties into your dispinterface
+4.add this dispinterface to you class by add connection point
+5.build your project, then you will find in the CProxy_IYourprojectEvents<T>
+	Fire_AddedMethod.
+Note:Once your modifed the dispinterface,you got to redo "add connection point" into your class 
+that is it as described here in MSDN
+ms-help://MS.MSDNQTR.v80.en/MS.MSDN.v80/MS.VisualStudio.v80.en/dv_vclib/html/843531be-4a36-4db0-9d54-e029b1a72a8b.htm
+9.Callback function from AXChatter to Chatter can only have one parameter,courious
+	void UpdateGUI(void* arg)		OK
+	void UpdateGUI(ULONG userid,ULONG tid)	NotOK
+and calling a public method of a dll with parameter string,cause this error too.
+and later I found not only string, but if there are more than 1 parameters.
+	it's because string
+1>Registering output...
+1>Project : error PRJ0050: Failed to register output. Please ensure you have the appropriate permissions to modify the registry.
+Solution1: reference the class.lib by 
+program once(lib,"class.lib") other than put it in the input of the linker.
+Solution2:copy all the dlls it deponds on into C:\WINDOWS\system32,for regsvr32 does not search in your project directory,maybe.
+reference:http://www.experts-exchange.com/Programming/Languages/CPP/Q_21967670.html
+	http://msdn.microsoft.com/en-us/library/ms235584%28VS.80%29.aspx
+10.when "subclass" a common control,in the event handler, return m_thecontrol.DefWindowProc();
+11.Error: The Side-by-Side configuration information for "d:\dw\release\release\CHATTER.DLL" contains errors.  (14001).
+Warning: At least one module has an unresolved import due to a missing export function in a delay-load dependent module.
+  change the setting: c++/code generation/MD or else --> MT or MTD. but For MT or MTD, the heap between Dlls or Exe are different.so do not new/delete beyond dll boundaries.
+  http://www.codeproject.com/KB/cpp/Short_Story_VCPP_CRT.aspx
+  MT multi-threaded CRTs,beware not beyond dll boundaries when new/delete(malloc/free).for each CRTs are running in different stack.
+  MTD multi-threaded Dll load crt dll as saperated dlls
+12.Debug axchatter.dll works, but release version doesn't work,no voice playing at all by directsound.
+   it's because of the Jitter, when I turn off the Jitter, it works in release version. so maybe the release version of the Jitter in speex does not work?

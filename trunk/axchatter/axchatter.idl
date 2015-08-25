@@ -1,0 +1,67 @@
+// axchatter.idl : IDL source for axchatter
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (axchatter.tlb) and marshalling code.
+
+#include "olectl.h"
+#include "olectl.h"
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(BAD17CBE-B918-49DA-AE45-C2778175ED2B),
+	dual,
+	nonextensible,
+	helpstring("Ixchatter Interface"),
+	pointer_default(unique)
+]
+interface Ixchatter : IDispatch{
+	[propget, id(1), helpstring("property MyId")] HRESULT MyId([out, retval] LONG* pVal);
+	[propput, id(1), helpstring("property MyId")] HRESULT MyId([in] LONG newVal);
+	[propget, id(2), helpstring("property MyName")] HRESULT MyName([out, retval] BSTR* pVal);
+	[propput, id(2), helpstring("property MyName")] HRESULT MyName([in] BSTR newVal);
+	[id(3), helpstring("method Start")] HRESULT Start(void);
+	//[id(4), helpstring("method InvitePeerVoiceChat")] HRESULT InvitePeerVoiceChat(void);
+	[id(4), helpstring("method InvitePeerVoiceChat")] HRESULT InvitePeerVoiceChat([in] long peerid);
+};
+
+[
+	object,
+	uuid(8FE879D4-B349-4DB3-8406-70326F8677D9),
+	dual,
+	nonextensible,
+	helpstring("IMyTabCtrl Interface"),
+	pointer_default(unique)
+]
+interface IMyTabCtrl : IDispatch{
+};
+
+[
+	uuid(396E8956-AB69-4D4B-AD78-02C3A4E32124),
+	version(1.0),
+	helpstring("axchatter 1.0 Type Library")
+]
+library axchatterLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(3EF4F91A-833E-43AD-84C4-A1D3CA5AAC8B),
+		control,
+		helpstring("xchatter Class")
+	]
+	coclass xchatter
+	{
+		[default] interface Ixchatter;
+	};
+	[
+		uuid(ACC2008A-A44F-4B6D-96A7-D3DBEF02BBCB),
+		control,
+		helpstring("MyTabCtrl Class")
+	]
+	coclass MyTabCtrl
+	{
+		[default] interface IMyTabCtrl;
+	};
+};

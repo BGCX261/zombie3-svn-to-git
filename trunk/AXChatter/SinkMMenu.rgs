@@ -1,0 +1,27 @@
+HKCR
+{
+	AXChatter.SinkMMenu.1 = s 'SinkMMenu Class'
+	{
+		CLSID = s '{A5F7955F-03A9-4F31-B607-9C60B4151F54}'
+	}
+	AXChatter.SinkMMenu = s 'SinkMMenu Class'
+	{
+		CLSID = s '{A5F7955F-03A9-4F31-B607-9C60B4151F54}'
+		CurVer = s 'AXChatter.SinkMMenu.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {A5F7955F-03A9-4F31-B607-9C60B4151F54} = s 'SinkMMenu Class'
+		{
+			ProgID = s 'AXChatter.SinkMMenu.1'
+			VersionIndependentProgID = s 'AXChatter.SinkMMenu'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			val AppID = s '%APPID%'
+			'TypeLib' = s '{F0E6928C-ACBA-4913-A2E2-631F2B3F11B1}'
+		}
+	}
+}

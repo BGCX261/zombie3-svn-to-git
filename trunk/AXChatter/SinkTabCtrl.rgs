@@ -1,0 +1,27 @@
+HKCR
+{
+	AXChatter.SinkTabCtrl.1 = s 'SinkTabCtrl Class'
+	{
+		CLSID = s '{20CF3F07-5EDE-4EA4-8709-FC4C54213FAB}'
+	}
+	AXChatter.SinkTabCtrl = s 'SinkTabCtrl Class'
+	{
+		CLSID = s '{20CF3F07-5EDE-4EA4-8709-FC4C54213FAB}'
+		CurVer = s 'AXChatter.SinkTabCtrl.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {20CF3F07-5EDE-4EA4-8709-FC4C54213FAB} = s 'SinkTabCtrl Class'
+		{
+			ProgID = s 'AXChatter.SinkTabCtrl.1'
+			VersionIndependentProgID = s 'AXChatter.SinkTabCtrl'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			val AppID = s '%APPID%'
+			'TypeLib' = s '{F0E6928C-ACBA-4913-A2E2-631F2B3F11B1}'
+		}
+	}
+}

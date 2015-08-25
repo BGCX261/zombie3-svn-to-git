@@ -1,0 +1,14 @@
+1.error PRJ0050: Failed to register output atl80.dll when building atl axtivex
+  cause:because after the building, vs tring to register it, but the vc dlls are not there in the working directory, so command called by vc
+ regsvr32 dllname got failed with that error.
+2.do not build your dll into static lib when it reference system libs, 
+  for it may get conflict with other modules which reference the same system libs.
+3.C Run-Time Error R6034
+Error Message
+An application has made an attempt to load the C runtime library without using a manifest. This is an unsupported way to load Visual C++ DLLs. You need to modify your application to build with a manifest. For more information, see the "Visual C++ Libraries as Shared Side-by-Side Assemblies" topic in the product documentation.
+  resolution:
+	1.Make sure the dependencies are of the right order.
+	2.If it still does not work, you can make it a static .lib other than .dll
+Marked*	3.Make sure all the dependencies, especially the inderect system libs are added to make sure the right manifest info is embedded into the .dll.
+	  because if any system dll is missing, it won't create right embedded manifest into into the created .dll or exe.
+        4. More,please refer to http://ooplab.org/post/692.html

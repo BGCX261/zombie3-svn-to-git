@@ -1,0 +1,6 @@
+
+D:\workspace\svns\zombie3\bin\debug>CABARC -s 6144 N axchatter.cab Microsoft.VC80.ATL.manifest Microsoft.VC80.DebugCRT.manifest atl80.dll msvcp80d.dll msvcr80d.dll axchatter.dll chatter.dll mythread.dll myfile.dll mynet.dll myudpnet.dll message.dll bridgenet.dll axaudio.dll cab.inf
+
+
+
+signtool signwizard

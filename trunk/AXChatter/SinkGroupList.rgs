@@ -1,0 +1,27 @@
+HKCR
+{
+	AXChatter.SinkGroupList.1 = s 'SinkGroupList Class'
+	{
+		CLSID = s '{B801A6AE-D819-46B4-9946-648475124BB9}'
+	}
+	AXChatter.SinkGroupList = s 'SinkGroupList Class'
+	{
+		CLSID = s '{B801A6AE-D819-46B4-9946-648475124BB9}'
+		CurVer = s 'AXChatter.SinkGroupList.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {B801A6AE-D819-46B4-9946-648475124BB9} = s 'SinkGroupList Class'
+		{
+			ProgID = s 'AXChatter.SinkGroupList.1'
+			VersionIndependentProgID = s 'AXChatter.SinkGroupList'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			val AppID = s '%APPID%'
+			'TypeLib' = s '{F0E6928C-ACBA-4913-A2E2-631F2B3F11B1}'
+		}
+	}
+}

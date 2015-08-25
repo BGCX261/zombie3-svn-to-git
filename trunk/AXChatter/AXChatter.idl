@@ -1,0 +1,326 @@
+// AXChatter.idl : IDL source for AXChatter
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (AXChatter.tlb) and marshalling code.
+
+#include "olectl.h"
+#include "olectl.h"
+#include "olectl.h"
+#include "olectl.h"
+#include "olectl.h"
+#include "olectl.h"
+#include "olectl.h"
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(DA4D1476-C850-466B-AB81-833387F46914),
+	dual,
+	nonextensible,
+	helpstring("IChatterTabCtrl Interface"),
+	pointer_default(unique)
+]
+interface IChatterTabCtrl : IDispatch{
+	[id(1), helpstring("method AddItem")] HRESULT AddItem(ULONG userid, BSTR username, BSTR myname);
+	[id(2), helpstring("method DeleteItem")] HRESULT DeleteItem(ULONG userid);
+	[id(3), helpstring("method SetCurSel")] HRESULT SetCurSel(ULONG userid);
+	[id(4), helpstring("method GetCurSel")] HRESULT GetCurSel([out,retval] ULONG* userid);
+	[id(5), helpstring("method GetItemCount")] HRESULT GetItemCount(LONG* lCount);
+	[id(6), helpstring("method SetImageList")] HRESULT SetImageList(LONG pImageList);
+	[id(7), helpstring("method DisplayReceivedUserMsg")] HRESULT DisplayReceivedUserMsg(ULONG userid, BSTR username, BSTR myname, BSTR instantmsg);
+	[id(8), helpstring("method GetCurSelName")] HRESULT GetCurSelName([out,retval] BSTR* username);
+	[id(9), helpstring("method DisplayNotification")] HRESULT DisplayNotification(ULONG userid, BSTR username, BSTR myname, BSTR notification);
+};
+
+[
+	object,
+	uuid(8B544304-5C4D-4CB3-BA2F-3D01D4A5EEFA),
+	dual,
+	nonextensible,
+	helpstring("Ixchatter Interface"),
+	pointer_default(unique)
+]
+interface Ixchatter : IDispatch{
+	[id(1), helpstring("method InstantMsgChat")] HRESULT InstantMsgChat(ULONG userid, BSTR username);
+	[propget, id(2), helpstring("property MyId")] HRESULT MyId([out, retval] ULONG* pVal);
+	[propput, id(2), helpstring("property MyId")] HRESULT MyId([in] ULONG newVal);
+	[propget, id(3), helpstring("property MyName")] HRESULT MyName([out, retval] BSTR* pVal);
+	[propput, id(3), helpstring("property MyName")] HRESULT MyName([in] BSTR newVal);
+	[id(4), helpstring("method Start")] HRESULT Start(void);
+	[id(5), helpstring("method InvitePeerVoiceChat")] HRESULT InvitePeerVoiceChat(ULONG userid, BSTR username);
+	[id(6), helpstring("method InvitePeerVideoChat")] HRESULT InvitePeerVideoChat(ULONG userid, BSTR username);
+};
+
+[
+	object,
+	uuid(74D39396-306F-4139-87E5-C0943A3D707C),
+	dual,
+	nonextensible,
+	helpstring("ISinkTabCtrl Interface"),
+	pointer_default(unique)
+]
+interface ISinkTabCtrl : IDispatch{
+	[id(1), helpstring("method SendInstantMsg")] HRESULT SendInstantMsg(ULONG userid, BSTR username, BSTR instantmsg);
+};
+[
+	object,
+	uuid(675826B7-B0D2-4709-AEDD-A2064F963350),
+	dual,
+	nonextensible,
+	helpstring("IChatterMMenu Interface"),
+	pointer_default(unique)
+]
+interface IChatterMMenu : IDispatch{
+};
+
+[
+	object,
+	uuid(C675AD60-8C0B-48D5-BAAB-EB7475492418),
+	dual,
+	nonextensible,
+	helpstring("ISinkMMenu Interface"),
+	pointer_default(unique)
+]
+interface ISinkMMenu : IDispatch{
+	[id(1), helpstring("method InviteCurVoiceChat")] HRESULT InviteCurVoiceChat(void);
+	[id(2), helpstring("method InviteCurVideoChat")] HRESULT InviteCurVideoChat(void);
+	[id(3), helpstring("method TransferCurFile")] HRESULT TransferCurFile(void);
+	[id(4), helpstring("method TransferCurFileOffline")] HRESULT TransferCurFileOffline(void);
+};
+[
+	object,
+	uuid(2527B1B3-8EB1-420B-9046-F14EFE08BB14),
+	dual,
+	nonextensible,
+	helpstring("IRequestList Interface"),
+	pointer_default(unique)
+]
+interface IRequestList : IDispatch{
+	[id(1), helpstring("method AddItem")] HRESULT AddItem(ULONG tstatusid, BSTR tittle);
+	[id(2), helpstring("method DeleteItem")] HRESULT DeleteItem(ULONG tstatusid);
+	[id(3), helpstring("method SetButtonYesNo")] HRESULT SetButtonYesNo(ULONG tstatusid);
+	[id(4), helpstring("method SetButtonYesAsNo")] HRESULT SetButtonYesAsNo(ULONG tstatusid);
+	[id(5), helpstring("method SetButtonCancel")] HRESULT SetButtonCancel(ULONG tstatusid);
+	[id(6), helpstring("method SetProgress")] HRESULT SetProgress(ULONG tstatusid, ULONG percentage);
+};
+
+[
+	object,
+	uuid(7320AA82-1A46-4A7C-B83D-5DC8403B05EC),
+	dual,
+	nonextensible,
+	helpstring("ISinkRequestList Interface"),
+	pointer_default(unique)
+]
+interface ISinkRequestList : IDispatch{
+	[id(1), helpstring("method AcceptRequest")] HRESULT AcceptRequest(ULONG tstatusid, BSTR additional);
+	[id(2), helpstring("method RejectRequest")] HRESULT RejectRequest(ULONG tstatusid);
+	[id(3), helpstring("method CancelTask")] HRESULT CancelTask(ULONG tstatusid);
+};
+[
+	object,
+	uuid(350428DE-7230-435A-B054-8037DE185223),
+	dual,
+	nonextensible,
+	helpstring("IGroupList Interface"),
+	pointer_default(unique)
+]
+interface IGroupList : IDispatch{
+	[id(1), helpstring("method AddMember")] HRESULT AddMember(ULONG userid, BSTR username,BOOL isadmin);
+	[id(2), helpstring("method DeleteMember")] HRESULT DeleteMember(ULONG userid);
+	[id(3), helpstring("method SetMeAdmin")] HRESULT SetMeAdmin(BOOL bAmIAdmin);
+	[id(4), helpstring("method Empty")] HRESULT Empty(void);
+	[id(5), helpstring("method Size")] HRESULT Size([out,retval] LONG* size);
+};
+
+[
+	object,
+	uuid(407D1B4E-ED74-4AB7-83FC-75B1B46ECFFF),
+	dual,
+	nonextensible,
+	helpstring("ISinkGroupList Interface"),
+	pointer_default(unique)
+]
+interface ISinkGroupList : IDispatch{
+	[id(1), helpstring("method DeleteItem")] HRESULT DeleteMember(ULONG userid);
+};
+
+[
+	object,
+	uuid(DAEA2911-2AE1-40CB-9C7B-9F8D3D77E8F5),
+	dual,
+	nonextensible,
+	helpstring("ISRenderCollection Interface"),
+	pointer_default(unique)
+]
+interface ISRenderCollection : IDispatch{
+	[id(1), helpstring("method CreateRender")] HRESULT CreateRender(BYTE* host, ULONG port, BYTE* caption);
+	[id(3), helpstring("method DestroyRender")] HRESULT DestroyRender(BYTE* host, ULONG port);
+	[id(4), helpstring("method Play")] HRESULT Play(ULONG interval);
+	[id(5), helpstring("method Stop")] HRESULT Stop(void);
+};
+
+[
+	uuid(F0E6928C-ACBA-4913-A2E2-631F2B3F11B1),
+	version(1.0),
+	helpstring("AXChatter 1.0 Type Library")
+]
+library AXChatterLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(5871BE4C-C2AF-4642-916E-FA3354F0E537),
+		helpstring("_IChatterTabCtrlEvents Interface")
+	]
+	dispinterface _IChatterTabCtrlEvents
+	{
+		properties:
+		methods:
+			[id(1), helpstring("method SendInstantMsg")] HRESULT SendInstantMsg(LONG userid, BSTR username, BSTR instantmsg);
+	};
+	[
+		uuid(6865EF4A-C109-46D3-91D7-9181DCB13A6F),
+		control,
+		helpstring("ChatterTabCtrl Class")
+	]
+	coclass ChatterTabCtrl
+	{
+		[default] interface IChatterTabCtrl;
+		[default, source] dispinterface _IChatterTabCtrlEvents;
+	};
+	[
+		uuid(FDED6FA5-6596-4412-A414-5E3A552044AB),
+		control,
+		helpstring("xchatter Class")
+	]
+	coclass xchatter
+	{
+		[default] interface Ixchatter;
+	};
+	[
+		uuid(20CF3F07-5EDE-4EA4-8709-FC4C54213FAB),
+		helpstring("SinkTabCtrl Class")
+	]
+	coclass SinkTabCtrl
+	{
+		[default] interface ISinkTabCtrl;
+	};
+	[
+		uuid(C4B825C2-1639-4164-99CE-F3FF6685BE2F),
+		helpstring("_IChatterMMenuEvents Interface")
+	]
+	dispinterface _IChatterMMenuEvents
+	{
+		properties:
+		methods:
+			[id(1), helpstring("method InvitePeerVoiceChat")] HRESULT InviteCurVoiceChat();
+			[id(2), helpstring("method InvitePeerVideoChat")] HRESULT InviteCurVideoChat();
+			[id(3), helpstring("method TransferFile")] HRESULT TransferCurFile();
+			[id(4), helpstring("method TransferFioeOffline")] HRESULT TransferCurFileOffline();
+	};
+	[
+		uuid(F23F1295-D6D4-4C7F-9E28-B2CA23639CC4),
+		control,
+		helpstring("ChatterMMenu Class")
+	]
+	coclass ChatterMMenu
+	{
+		[default] interface IChatterMMenu;
+	};
+	[
+		uuid(A5F7955F-03A9-4F31-B607-9C60B4151F54),
+		helpstring("SinkMMenu Class")
+	]
+	coclass SinkMMenu
+	{
+		[default] interface ISinkMMenu;
+	};
+	[
+		uuid(3D8D539A-F7E3-45EA-9E51-6ABC682C3057),
+		helpstring("_IRequestListEvents Interface")
+	]
+	dispinterface _IRequestListEvents
+	{
+		properties:
+		methods:
+			[id(1), helpstring("method AcceptRequest")] HRESULT AcceptRequest(ULONG tstatusid, BSTR additional);
+			[id(2), helpstring("method RejectRequest")] HRESULT RejectRequest(ULONG tstatusid);
+			[id(3), helpstring("method CancelTask")] HRESULT CancelTask(ULONG tstatusid);
+	};
+	[
+		uuid(8022EC6E-129C-4AC4-BBC1-BE1B9EAA9142),
+		control,
+		helpstring("RequestList Class")
+	]
+	coclass RequestList
+	{
+		[default] interface IRequestList;
+		[default, source] dispinterface _IRequestListEvents;
+	};
+	[
+		uuid(60E03A65-6B94-4F49-A4C7-400952AD7925),
+		helpstring("SinkRequestList Class")
+	]
+	coclass SinkRequestList
+	{
+		[default] interface ISinkRequestList;
+	};
+	[
+		uuid(D1165812-DD97-4DC8-9F6B-2973FEF8E3D5),
+		helpstring("_IGroupListEvents Interface")
+	]
+	dispinterface _IGroupListEvents
+	{
+		properties:
+		methods:
+			[id(1), helpstring("method DeleteMember")] HRESULT DeleteMember(ULONG userid);
+	};
+	[
+		uuid(87AAE186-4FB5-4353-8DAA-65872C4DAC73),
+		control,
+		helpstring("GroupList Class")
+	]
+	coclass GroupList
+	{
+		[default] interface IGroupList;
+		[default, source] dispinterface _IGroupListEvents;
+	};
+	[
+		uuid(B801A6AE-D819-46B4-9946-648475124BB9),
+		helpstring("SinkGroupList Class")
+	]
+	coclass SinkGroupList
+	{
+		[default] interface ISinkGroupList;
+	};
+	[
+		uuid(63757BCA-A84D-401C-AFEE-183C5620983C),
+		helpstring("_IRenderCollectionEvents Interface")
+	]
+	dispinterface _IRenderCollectionEvents
+	{
+		properties:
+		methods:
+	};
+	[
+		uuid(67630F9B-35F6-41E6-A226-9E4D35AAFA0D),
+		helpstring("_ISRenderCollectionEvents Interface")
+	]
+	dispinterface _ISRenderCollectionEvents
+	{
+		properties:
+		methods:
+	};
+	[
+		uuid(A17D0285-990D-4C85-8711-E6BD32088F87),
+		control,
+		helpstring("SRenderCollection Class")
+	]
+	coclass SRenderCollection
+	{
+		[default] interface ISRenderCollection;
+		[default, source] dispinterface _ISRenderCollectionEvents;
+	};
+};

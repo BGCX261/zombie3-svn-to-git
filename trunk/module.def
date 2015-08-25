@@ -1,0 +1,1 @@
+MODULES+=mythread myfile mydb mynet bridgenet bridgedb bridge msgprocessor

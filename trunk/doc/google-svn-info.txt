@@ -1,0 +1,13 @@
+Command-line access
+
+If you plan to make changes, use this command to check out the code as yourself using HTTPS:
+# Project members authenticate over HTTPS to allow committing changes.
+svn checkout https://axchatter.googlecode.com/svn/trunk/ axchatter --username fanchuan0077
+
+When prompted, enter your generated googlecode.com password.
+
+Use this command to anonymously check out the latest project source code:
+# Non-members may check out a read-only working copy anonymously over HTTP.
+svn checkout http://axchatter.googlecode.com/svn/trunk/ axchatter-read-only 
+
+Your googlecode.com password: bv2Qe9wQ9Se9

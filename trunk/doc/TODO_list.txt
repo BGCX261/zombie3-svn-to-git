@@ -1,0 +1,10 @@
+1.when sending failed,to update task status.
+2.GetDataFromMsg returned pointer,my cause mem leak,handle it later.
+3._USERDLL problem when a dll references another dll.
+4.RegisterUdpPoint right before chatting,not on lunch the chatter.
+5.Tid, message id and task id should be different,so the udpneter can correctly identify them.
+6.Disable inviting myself to chat or sending msg to myself
+7.Jitter buffer should map to host::port,current it's to host only.
+8.F5 will reload the page, and also restart the chatter.not good.
+9.You can not delete admin(yourself) from GroupList. it's a bug now, to fix.
+10.In FillBufferWithSound, you can leave part of the black banck if it's not urgent.

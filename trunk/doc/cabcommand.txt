@@ -1,0 +1,4 @@
+mt:
+CABARC -s 6144 N axchatter.cab mythread.dll myfile.dll mynet.dll myudpnet.dll message.dll bridgenet.dll axaudio.dll libspeex.dll libspeexdsp.dll chatter.dll axchatter.dll cab_mt.inf
+
+md:
